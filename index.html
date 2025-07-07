@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Closed Games</title>
   <style>
-    /* Base Styling */
     html, body {
       margin: 0;
       padding: 0;
@@ -16,34 +15,57 @@
       color: #fff;
     }
 
-    /* Flickering Stars */
+    /* Drawing-style Stars */
     .stars {
+      position: absolute;
       width: 100%;
       height: 100%;
       background: transparent;
-      background-image: radial-gradient(white 1px, transparent 1px),
-                        radial-gradient(white 1px, transparent 1px);
-      background-size: 50px 50px;
-      background-position: 0 0, 25px 25px;
-      animation: flicker 2s infinite;
-      position: absolute;
-      top: 0;
-      left: 0;
+      background-image:
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(white 2px, transparent 2px),
+        radial-gradient(white 1.5px, transparent 1.5px);
+      background-size: 60px 60px, 100px 100px, 150px 150px;
+      background-position: 0 0, 30px 30px, 75px 75px;
+      animation: flicker 2s infinite alternate;
       z-index: 0;
     }
 
     @keyframes flicker {
       0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
+      50% { opacity: 0.6; }
+    }
+
+    /* Voids (Dark Patches) */
+    .void {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, #000 40%, transparent 70%);
+      opacity: 0.8;
+      z-index: 1;
+    }
+
+    .void1 {
+      width: 120px;
+      height: 120px;
+      top: 30%;
+      left: 15%;
+    }
+
+    .void2 {
+      width: 200px;
+      height: 200px;
+      top: 70%;
+      left: 70%;
     }
 
     /* Planets - Cartoony Look */
     .planet {
       position: absolute;
       border-radius: 50%;
-      z-index: 1;
+      z-index: 2;
       animation: spin 30s linear infinite;
-      background-size: cover;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
     }
 
     .planet.planet1 {
@@ -52,7 +74,7 @@
       top: 20%;
       left: 80%;
       background: radial-gradient(circle at 30% 30%, #ff69b4, #ff1493);
-      box-shadow: 0 0 20px #ff69b4;
+      box-shadow: 0 0 20px #ff69b4, 0 0 40px #ff1493;
     }
 
     .planet.planet2 {
@@ -61,7 +83,7 @@
       top: 65%;
       left: 10%;
       background: radial-gradient(circle at 40% 40%, #00f0ff, #0033cc);
-      box-shadow: 0 0 20px #00f0ff;
+      box-shadow: 0 0 20px #00f0ff, 0 0 40px #0033cc;
     }
 
     @keyframes spin {
@@ -71,17 +93,16 @@
 
     .container {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       max-width: 900px;
       margin: 100px auto;
       padding: 40px 20px;
-      border: 2px solid #7a42f4; /* Thin purple border */
+      border: 2px solid #7a42f4;
       background: rgba(0, 0, 0, 0.6);
       border-radius: 15px;
       text-align: center;
     }
 
-    /* Title Block */
     .title-box {
       background-color: #2d124d;
       padding: 30px 20px;
@@ -95,7 +116,6 @@
       color: red;
       text-decoration: line-through;
       margin: 0;
-      line-height: 1;
       opacity: 0.7;
     }
 
@@ -136,13 +156,16 @@
     }
 
     audio {
-      display: none;
+      position: absolute;
+      top: -1000px; /* Hides player off-screen but prevents browser blocking */
     }
   </style>
 </head>
 <body>
   <!-- Background Elements -->
   <div class="stars"></div>
+  <div class="void void1"></div>
+  <div class="void void2"></div>
   <div class="planet planet1"></div>
   <div class="planet planet2"></div>
 
@@ -165,7 +188,8 @@
 
   <!-- Music -->
   <audio autoplay loop>
-    <source src="https://github.com/davidrobertwriter/davidrobertwriter.github.io/raw/refs/heads/main/Playground%20Rizz.mp3" type="audio/mpeg" />
+    <source src="Playground Rizz.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
   </audio>
 </body>
 </html>
