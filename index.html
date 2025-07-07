@@ -5,135 +5,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MR GAMES</title>
   <style>
-    body, html {
+    html, body {
       margin: 0;
       padding: 0;
-      width: 100%;
       height: 100%;
-      overflow: hidden;
+      width: 100%;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #ffffff;
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
+      background: url('cosmic_background.png') center center / cover no-repeat;
+      color: #ffffff;
+      text-align: center;
       position: relative;
     }
 
-    .space-background {
-      position: fixed;
+    .overlay {
+      position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
       height: 100%;
-      background: url('space_drawing.png') center center / cover no-repeat;
-      overflow: hidden;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.4);
       z-index: 1;
     }
 
-    .blackhole {
-      position: absolute;
-      top: 35%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle at center, #000 30%, transparent 60%);
-      border-radius: 50%;
-      box-shadow: 0 0 60px 20px rgba(176, 136, 255, 0.6), 0 0 120px 40px rgba(0, 255, 255, 0.3);
-      animation: spin 60s linear infinite, pulse 3s ease-in-out infinite;
-      z-index: 2;
-      overflow: hidden;
-    }
-
-    .blackhole::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255, 0, 255, 0.2) 0%, transparent 60%);
-      border-radius: 50%;
-      animation: ripple 4s linear infinite;
-    }
-
-    @keyframes spin {
-      from { transform: translate(-50%, -50%) rotate(0deg); }
-      to { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 60px 20px rgba(176, 136, 255, 0.6), 0 0 120px 40px rgba(0, 255, 255, 0.3); }
-      50% { box-shadow: 0 0 90px 30px rgba(176, 136, 255, 0.8), 0 0 150px 60px rgba(0, 255, 255, 0.5); }
-    }
-
-    @keyframes ripple {
-      0% { transform: scale(1); opacity: 0.7; }
-      100% { transform: scale(2); opacity: 0; }
-    }
-
-    .planet {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle, #6e00ff, #120033);
-      box-shadow: 0 0 20px #6e00ff;
-      animation: spin 80s linear infinite;
-      z-index: 2;
-    }
-
-    .planet1 { width: 100px; height: 100px; top: 15%; left: 20%; }
-    .planet2 { width: 130px; height: 130px; top: 70%; left: 75%; }
-    .planet3 { width: 80px; height: 80px; top: 25%; left: 80%; }
-
     .container {
-      position: relative;
-      text-align: center;
-      padding: 40px 30px;
-      background: rgba(0, 0, 0, 0.7);
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-      z-index: 3;
-      backdrop-filter: blur(5px);
+      z-index: 2;
     }
 
     h1 {
       font-size: 4rem;
-      margin-bottom: 10px;
-      color: #b088ff;
-      text-shadow: 0 0 15px #b088ff, 0 0 25px #b088ff;
-      animation: glow 1.5s ease-in-out infinite alternate;
+      color: #c58aff;
+      text-shadow: 0 0 20px #c58aff, 0 0 40px #c58aff;
+      margin: 0;
+      animation: glow 2s ease-in-out infinite alternate;
     }
 
-    p.subtitle {
-      font-size: 1.5rem;
+    .subtitle {
+      font-size: 1.7rem;
       color: #00ffff;
-      margin-bottom: 30px;
-    }
-
-    @keyframes glow {
-      from { text-shadow: 0 0 5px #b088ff; }
-      to { text-shadow: 0 0 25px #b088ff, 0 0 40px #b088ff; }
+      margin: 15px 0 40px 0;
+      text-shadow: 0 0 10px #00ffff;
     }
 
     nav {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
+      gap: 15px;
     }
 
     nav a {
-      padding: 14px 32px;
-      font-size: 1.3rem;
+      padding: 12px 28px;
+      font-size: 1.2rem;
       color: #00ffff;
       text-decoration: none;
       border: 2px solid #00ffff;
-      border-radius: 40px;
-      background: rgba(0, 0, 0, 0.4);
+      border-radius: 30px;
+      background: rgba(0, 0, 0, 0.5);
       box-shadow: 0 0 12px #00ffff;
       transition: all 0.3s ease;
       backdrop-filter: blur(3px);
-      letter-spacing: 1px;
     }
 
     nav a:hover {
@@ -142,15 +76,16 @@
       box-shadow: 0 0 25px #00ffff, 0 0 40px #00ffff;
       transform: scale(1.1);
     }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #c58aff; }
+      to { text-shadow: 0 0 30px #c58aff, 0 0 60px #c58aff; }
+    }
   </style>
 </head>
 <body>
-  <div class="space-background"></div>
 
-  <div class="blackhole"></div>
-  <div class="planet planet1"></div>
-  <div class="planet planet2"></div>
-  <div class="planet planet3"></div>
+  <div class="overlay"></div>
 
   <div class="container">
     <h1>MR GAMES</h1>
@@ -162,12 +97,12 @@
       <a href="record.html">Records</a>
       <a href="use_full_links.html">Useful Links</a>
       <a href="https://skibidi.loves.clubpenguin.club/">Szvy Central V2</a>
-      <a href="https://sigmasigmatoiletedge.github.io/">Nettle Web</a>
     </nav>
   </div>
 
   <audio autoplay loop>
     <source src="https://github.com/davidrobertwriter/davidrobertwriter.github.io/raw/refs/heads/main/Playground%20Rizz.mp3" type="audio/mpeg">
   </audio>
+
 </body>
 </html>
