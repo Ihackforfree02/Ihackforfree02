@@ -1,1 +1,156 @@
-super cool guy
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Closed Games</title>
+  <style>
+    /* Space background and base styling */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: radial-gradient(ellipse at bottom, #000 0%, #050505 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+    }
+
+    .stars {
+      width: 100%;
+      height: 100%;
+      background: transparent url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/media/star.png') repeat;
+      animation: flicker 4s linear infinite;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 0.3; }
+    }
+
+    .planet {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ccc, #444);
+      animation: spin 20s linear infinite;
+      z-index: 2;
+    }
+
+    .planet:nth-child(1) {
+      top: 10%;
+      left: 80%;
+      background: radial-gradient(circle at 30% 30%, #00f0ff, #004466);
+      width: 80px;
+      height: 80px;
+      animation-duration: 25s;
+    }
+
+    .planet:nth-child(2) {
+      top: 70%;
+      left: 10%;
+      background: radial-gradient(circle at 30% 30%, #ffcc00, #996600);
+      width: 120px;
+      height: 120px;
+      animation-duration: 35s;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    h1 {
+      font-size: 4rem;
+      color: #fff;
+      position: relative;
+      display: inline-block;
+    }
+
+    h1::before {
+      content: "Closed";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      color: red;
+      text-decoration: line-through;
+      opacity: 0.6;
+      transform: rotate(-10deg);
+    }
+
+    h1 span {
+      display: block;
+      color: #00ffff;
+      text-shadow: 0 0 15px #00ffff;
+    }
+
+    nav {
+      margin-top: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      z-index: 3;
+    }
+
+    nav a {
+      text-decoration: none;
+      padding: 12px 25px;
+      border: 2px solid #00ffff;
+      border-radius: 25px;
+      color: #00ffff;
+      background-color: transparent;
+      box-shadow: 0 0 10px #00ffff;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      background: #00ffff;
+      color: #000;
+      box-shadow: 0 0 20px #00ffff;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Space stars and planets -->
+  <div class="stars"></div>
+  <div class="planet"></div>
+  <div class="planet"></div>
+
+  <!-- Main content -->
+  <div class="container">
+    <h1><span>Games</span></h1>
+    <nav>
+      <a href="Games.html">Play</a>
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="about_us.html">About</a>
+      <a href="record.html">Records</a>
+      <a href="use_full_links.html">Useful Links</a>
+      <a href="https://skibidi.loves.clubpenguin.club/">Szvy Central V2</a>
+      <a href="https://sigmasigmatoiletedge.github.io/">Nettle Web</a>
+    </nav>
+  </div>
+
+  <!-- Background music -->
+  <audio autoplay loop>
+    <source src="https://github.com/davidrobertwriter/davidrobertwriter.github.io/raw/refs/heads/main/Playground%20Rizz.mp3" type="audio/mpeg">
+  </audio>
+</body>
+</html>
